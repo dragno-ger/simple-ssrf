@@ -1,1 +1,11 @@
-<html><head><title>test</title></head><body><iframe width=500 height=500 src="file://Windows/win.ini"></iframe></body></html>
+<html><head><title>test</title></head><body><script>
+const xhr = new XMLHttpRequest();
+xhr.open('GET', 'http://127.0.0.1/', true);
+xhr.onreadystatechange = function () {
+  if (xhr.readyState === 4 && xhr.status === 200) {
+    document.write(xhr.responseText)
+
+  }
+};
+xhr.send();
+</script></body></html>
