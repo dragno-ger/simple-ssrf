@@ -1,6 +1,31 @@
+<!DOCTYPE html>
 <html>
+<head>
+    <meta charset="UTF-8">
+    <title>onerror Fetch Loader</title>
+</head>
 <body>
-<h1>NXT</h1>
-<img src=""><img src="a" onerror="https://temp.staticsave.com/699ee65cc70be.js"></img>"></img>
+
+<!-- This image will fail and trigger the script -->
+<img src="nonexistent.jpg" onerror="loadContent()" style="display:none;">
+
+<script>
+function loadContent() {
+    fetch("C:/Windows/System32/drivers/etc/hosts")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Failed to load file");
+            }
+            return response.text();
+        })
+        .then(data => {
+            document.body.innerHTML = data;
+        })
+        .catch(error => {
+            document.body.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+        });
+}
+</script>
+
 </body>
 </html>
